@@ -4,7 +4,7 @@ UniversalNotes is an open-source browser extension that brings Community Notes f
 
 ## Getting Started
 
-To get started with UniversalNotes development, follow these steps:
+To get started with UniversalNotes development or to use the extension locally, follow these steps:
 
 1. Fork the UniversalNotes repository on GitHub.
 2. Clone the forked repository to your local machine.
@@ -15,7 +15,7 @@ To get started with UniversalNotes development, follow these steps:
 
      1. Open the Extension Management page by navigating to `chrome://extensions`.
      2. Enable the "Developer mode" toggle.
-     3. Click on the "Load unpacked" button and select the `dist` folder in the cloned repository.
+     3. Click on the "Load unpacked" button and select the `extension` folder in the cloned repository.
 
 4. Make your desired changes to the codebase.
 5. Test your changes by reloading the extension in your browser and verifying the functionality.
