@@ -1,14 +1,8 @@
 .postInputContainer {
   max-width: 100%;
-  height: 100%;
-  background: #f3f5f6;
-  border-bottom: 1px solid #f3f5f6;
-  /* border-right: 1px solid #f3f5f6; */
-  /* margin: 0.5rem; */
-  /* margin-top: 1rem; */
-  /* border-radius: 1rem; */
-  /* box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.05); */
+  /* border-bottom: 1px solid #f3f5f6; */
 }
+
 .postInputContainer > * {
   width: 100%;
   height: 100%;
@@ -34,15 +28,35 @@
 }
 
 .header_text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.4rem;
 }
 
+.header_text_url_container {
+  display: flex;
+  opacity: 0.9;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid rgba(66, 133, 244, 0.4);
+  border-radius: 1rem;
+  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.05);
+}
+
+.header_text_url_link_icon {
+  display: none;
+  margin-right: 0.4rem;
+  font-size: 1.2rem;
+  color: #000;
+}
+
 .header_text_url {
+  max-width: 99%;
+  overflow-wrap: break-word;
+  padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #555;
+  color: #000;
 }
 
 .input_container {
@@ -52,20 +66,20 @@
   height: 100%;
   padding: 1rem;
   padding-bottom: 0;
-  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.05); */
   /* padding-top: 0; */
 }
 
 .input {
   width: 100%;
-  border-radius: 0.5rem;
-  padding: 1rem;
+  /* border-radius: 0.5rem; */
+  /* padding: 1rem; */
   height: 100%;
-  min-height: 200px;
+  min-height: 52px;
   max-height: 400px;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.025);
-  border: 1px solid #e3e3e3;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.025); */
+  border-bottom: 1px solid #e3e3e3;
   /* overflow */
   overflow-y: auto;
   /* Scrollbar */
@@ -86,6 +100,7 @@
 
 .input:focus {
   outline: none;
+  border-bottom: 1px solid #d2d2d2;
 }
 
 .reply_input {
@@ -108,6 +123,12 @@
   padding: 0.5rem;
   font-size: 1rem;
   color: #555;
+}
+
+.character_count_error {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #ff0000;
 }
 
 .button_container {
@@ -145,7 +166,7 @@
   /* PINK */
   /* background: #ec058e; */
   /* DARK BLUE */
-  background: #0a96fb;
+  background: rgba(10, 150, 251, 0.8);
   /* background: #0d21a1; */
   /* background: rgb(10, 121, 136); */
   /* background: rgba(0, 0, 0, 0.7); */
@@ -174,24 +195,25 @@
 
 .lds_ring {
   margin-top: -4px;
+  margin-right: 0.8rem;
   display: inline-block;
   position: relative;
-  width: 15px;
-  height: 15px;
+  width: 1.4rem;
+  height: 1.4rem;
 }
 .lds_ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 1.4rem;
+  height: 1.4rem;
   margin: 2px;
   /* border: 2px solid #000; */
-  border: 2px solid #fff;
+  border: 2px solid #0a96fb;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   /* border-color: #000 transparent transparent transparent; */
-  border-color: #fff transparent transparent transparent;
+  border-color: #0a96fb transparent transparent transparent;
 }
 .lds_ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -336,4 +358,10 @@
   font-weight: 700;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.error_container {
+  color: #ff0000;
+  font-size: 0.9rem;
+  padding: 1rem 1rem 0 1rem;
 }

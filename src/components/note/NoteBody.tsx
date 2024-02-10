@@ -34,12 +34,12 @@ export default function NoteBody({ body }: { body: any }) {
           link = "https://" + word;
         }
         return (
-          <>
+          <span key={index}>
             {charsRemovedBeforeUrl}
             <a className="link" href={link} target="_blank" rel="noreferrer">
               {word}
             </a>{" "}
-          </>
+          </span>
         );
       } else if (word.includes("@") && !word.match(emailRegex)) {
         const charsRemovedBeforeAt = word.slice(0, word.indexOf("@"));
@@ -61,10 +61,10 @@ export default function NoteBody({ body }: { body: any }) {
           );
         } else {
           return (
-            <>
+            <span key={index}>
               {charsRemovedBeforeAt}
               <span>@</span>{" "}
-            </>
+            </span>
           );
         }
       } else {

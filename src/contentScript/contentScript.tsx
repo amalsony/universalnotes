@@ -8,7 +8,7 @@ import NoteBody from "../components/note/NoteBody";
 
 export default function ContentScript() {
   const [popupVisible, setPopupVisible] = useState(false);
-  const [popupContent, setpopupContent] = useState(null);
+  const [popup, setpopup] = useState(null);
   let lastUrl = null;
 
   // Function to handle URL changes
@@ -23,7 +23,7 @@ export default function ContentScript() {
           // Use the response to determine whether to show the popup
           setPopupVisible(response.data.showPopup);
           if (response.data.showPopup) {
-            setpopupContent(response.data.message);
+            setpopup(response.data.message);
           }
         }
       );
@@ -61,7 +61,7 @@ export default function ContentScript() {
         >
           <div className="universal_notes_header">
             <div className="universal_notes_title_container">
-              <Logo />
+              <Logo width={22} height={22} color={""} />
               <h2 className="universal_notes_title">
                 UniversalNotes Contributors added context
               </h2>
@@ -74,14 +74,9 @@ export default function ContentScript() {
             </button>
           </div>
           <div className="universal_notes_content">
-            <p className="universal_notes_text">
-              <NoteBody body={popupContent} />
-              {/* <a
-                href={`https://${popupContent}`}
-                target="_blank"
-                className="universal_notes_link"
-              ></a> */}
-            </p>
+            <div className="universal_notes_text">
+              <NoteBody body={popup.body} />
+            </div>
           </div>
         </div>
       )}

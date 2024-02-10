@@ -1,0 +1,19 @@
+.main-authenticated-container {
+  width: 100%;
+  background: #fff;
+}
+
+.main-authenticated-container-footer {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0 1rem 0.4rem 1rem;
+}
+
+.main-authenticated-container-footer-logout-button {
+  color: #626262;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+}

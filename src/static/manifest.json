@@ -1,14 +1,22 @@
 {
   "manifest_version": 3,
-  "name": "react-boilerplate",
-  "description": "react-boilerplate for chrome extension",
+  "name": "UniversalNotes",
+  "description": "Bringing Community Notes from Twitter to every website.",
   "version": "1.0.0",
   "action": {
     "default_popup": "popup.html",
-    "default_title": "React Boilerplate",
+    "default_title": "UniversalNotes",
     "default_icon": "icon128.png"
   },
-  "permissions": ["tabs", "bookmarks", "storage", "identity"],
+  "permissions": [
+    "tabs",
+    "bookmarks",
+    "storage",
+    "identity",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": ["*://*/*"],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",

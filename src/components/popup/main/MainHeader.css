@@ -1,0 +1,11 @@
+.main-authenticated-container-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.main-authenticated-container-header-logo {
+}

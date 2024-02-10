@@ -107,3 +107,12 @@
   color: #4285f4 !important;
   cursor: pointer !important;
 }
+
+.universal_notes_user {
+  all: initial;
+  font-size: 14px !important;
+  font-family: Arial, sans-serif !important;
+  color: #6b7280 !important;
+  margin-top: 0 !important; /* Remove top margin */
+  margin-bottom: 0 !important;
+}
