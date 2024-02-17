@@ -1,31 +1,37 @@
 .user_post_body_container {
   /* margin: 0 1.5rem; */
   /* margin-top: 0.5rem; */
-  font-size: 1rem;
-  font-weight: 400;
-  white-space: pre-wrap;
+  font-size: 16px !important;
+  /* font-weight: 400; */
+  font-weight: 400 !important;
+  white-space: pre-wrap !important;
   /* overflow */
-  overflow: wrap;
+  overflow: wrap !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .tag_link {
-  color: #4285f4;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  color: #4285f4 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
 }
 
 .tag_link:hover {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
-.link {
-  color: #4285f4;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+.universalnotes-link {
+  color: #4285f4 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
 }
 
-.link:hover {
-  text-decoration: underline;
+.universalnotes-link:hover {
+  text-decoration: underline !important;
+}
+
+.universalnotes-font {
+  font-family: Arial, Helvetica, sans-serif !important;
 }

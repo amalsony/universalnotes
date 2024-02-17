@@ -1,5 +1,6 @@
 body {
   width: 500px;
+  min-height: 240px;
 }
 
 .popup-container {

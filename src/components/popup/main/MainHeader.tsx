@@ -5,7 +5,7 @@ import "./MainHeader.css";
 import { usePopup } from "../../../context/popupContext";
 
 // Components
-import Logo from "../../general/Logo";
+import Logo from "../../../assets/general/Logo";
 import Profile from "./Profile";
 
 export default function MainHeader() {

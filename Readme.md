@@ -52,7 +52,7 @@ To learn more about UniversalNotes and its development, you can visit the follow
 
 ## Security
 
-If you believe you have found a security vulnerability in UniversalNotes, we encourage you to responsibly disclose this and not open a public issue. We will investigate all legitimate reports. Email amal@teegle.app to disclose any security vulnerabilities
+If you believe you have found a security vulnerability in UniversalNotes, we encourage you to responsibly disclose this and not open a public issue. We will investigate all legitimate reports. Email amal@universalnotes.org to disclose any security vulnerabilities
 
 ## Support
 

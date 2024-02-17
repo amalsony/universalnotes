@@ -34,9 +34,14 @@ export default function NoteBody({ body }: { body: any }) {
           link = "https://" + word;
         }
         return (
-          <span key={index}>
+          <span key={index} className="universalnotes-font">
             {charsRemovedBeforeUrl}
-            <a className="link" href={link} target="_blank" rel="noreferrer">
+            <a
+              className="universalnotes-link universalnotes-font"
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+            >
               {word}
             </a>{" "}
           </span>
@@ -51,19 +56,22 @@ export default function NoteBody({ body }: { body: any }) {
             <a
               key={index}
               href={`https://twitter.com/${username.toLowerCase()}`}
+              className="universalnotes-font"
             >
-              <span>
+              <span className="universalnotes-font">
                 {charsRemovedBeforeAt}
-                <span className="tag_link">@{username}</span>
+                <span className="tag_link universalnotes-font">
+                  @{username}
+                </span>
                 {word.split("@")[1].replace(username, "")}{" "}
               </span>
             </a>
           );
         } else {
           return (
-            <span key={index}>
+            <span key={index} className="universalnotes-font">
               {charsRemovedBeforeAt}
-              <span>@</span>{" "}
+              <span className="universalnotes-font">@</span>{" "}
             </span>
           );
         }
@@ -78,7 +86,7 @@ export default function NoteBody({ body }: { body: any }) {
       <div className="user_post_body">
         <span>
           {body.map((line: any, index: any) => (
-            <span key={index}>
+            <span key={index} className="universalnotes-font">
               {line}
               <br />
             </span>

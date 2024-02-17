@@ -1,14 +1,17 @@
 import React from "react";
 import "./LoginScreen.css";
 
+// Config
+import { config } from "../../config/config";
+
 // Components
-import Logo from "../general/Logo";
+import Logo from "../../assets/general/Logo";
 import ContinueWithGoogle from "../auth/ContinueWithGoogle";
 
 export default function LoginScreen() {
   const handleLogin = () => {
     chrome.tabs.create({
-      url: "http://localhost:8000/auth/google",
+      url: `https://www.universalnotes.org/api/auth/google`,
       selected: true,
       active: true,
     });

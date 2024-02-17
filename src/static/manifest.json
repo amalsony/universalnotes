@@ -12,6 +12,7 @@
     "tabs",
     "bookmarks",
     "storage",
+    "cookies",
     "identity",
     "activeTab",
     "scripting"

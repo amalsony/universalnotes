@@ -37,10 +37,15 @@
   display: flex;
   opacity: 0.9;
   flex-direction: row;
+  padding: 0.4rem 0.8rem;
   align-items: center;
   border: 1px solid rgba(66, 133, 244, 0.4);
   border-radius: 1rem;
   box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.05);
+}
+
+.header_text_url_container.header_text_url_container_warning {
+  border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
 .header_text_url_link_icon {
@@ -50,10 +55,15 @@
   color: #000;
 }
 
+.header_text_url_warning_icon {
+  margin-right: 0.4rem;
+  font-size: 1.2rem;
+  color: #000;
+}
+
 .header_text_url {
   max-width: 99%;
   overflow-wrap: break-word;
-  padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
   font-weight: 700;
   color: #000;
@@ -74,12 +84,14 @@
   width: 100%;
   /* border-radius: 0.5rem; */
   /* padding: 1rem; */
+  padding-bottom: 1rem;
   height: 100%;
   min-height: 52px;
   max-height: 400px;
   background: #ffffff;
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.025); */
-  border-bottom: 1px solid #e3e3e3;
+  /* border-bottom: 1px solid #e3e3e3; */
+  border-bottom: 1px solid #d5d5d5;
   /* overflow */
   overflow-y: auto;
   /* Scrollbar */
@@ -95,7 +107,7 @@
 
 .input[placeholder]:empty:before {
   content: attr(placeholder);
-  color: #555;
+  color: #444;
 }
 
 .input:focus {
@@ -114,9 +126,6 @@
 
 .reply_input:focus {
   outline: none;
-}
-
-.character_count_container {
 }
 
 .character_count {
@@ -149,6 +158,7 @@
   color: #000;
   /* border: 2px solid rgb(89, 91, 99); */
   border-radius: 2rem;
+  /* border-radius: 1rem; */
   /* background-color: #252525; */
   color: #fff;
   font-size: 0.9rem;
@@ -158,7 +168,13 @@
   transition: all 0.2s ease-in-out;
 }
 
-.loading_button_container {
+.button_container:hover {
+  background: #097ed2;
+  border: 1px solid #097ed2;
+  cursor: pointer;
+}
+
+.disabled_button_container {
   margin: 1rem;
   box-sizing: border-box;
   align-self: right;
@@ -176,6 +192,7 @@
   color: #000;
   /* border: 2px solid rgb(89, 91, 99); */
   border-radius: 21px;
+  /* border-radius: 1rem; */
   color: #fff;
   font-size: 0.9rem;
   font-weight: 600;

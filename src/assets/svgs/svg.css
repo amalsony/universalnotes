@@ -1,0 +1,8 @@
+.universalnotes-svg {
+  display: inline-block !important;
+  position: static !important;
+  height: auto !important;
+  vertical-align: middle !important;
+  width: auto !important;
+  z-index: 1 !important;
+}

@@ -7,6 +7,12 @@ interface PopupContextType {
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   isAuthenticated: boolean | null;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | null>>;
+  placeholder: string;
+  setPlaceholder: React.Dispatch<React.SetStateAction<string>>;
+  postButtonText: string;
+  setPostButtonText: React.Dispatch<React.SetStateAction<string>>;
+  accessCodeRequired: boolean;
+  setAccessCodeRequired: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Ensure the default value matches the structure, including any new fields
@@ -17,6 +23,12 @@ const defaultPopupContextValue: PopupContextType = {
   setToken: () => {},
   isAuthenticated: null,
   setIsAuthenticated: () => {},
+  placeholder: "",
+  setPlaceholder: () => {},
+  postButtonText: "Add note",
+  setPostButtonText: () => {},
+  accessCodeRequired: false,
+  setAccessCodeRequired: () => {},
 };
 
 // Create context with the default value
@@ -29,6 +41,11 @@ export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
+  const [placeholder, setPlaceholder] = useState<string>("");
+  const [postButtonText, setPostButtonText] = useState<string>("Add Note");
+
+  const [accessCodeRequired, setAccessCodeRequired] = useState<boolean>(false);
+
   return (
     <popupContext.Provider
       value={{
@@ -38,6 +55,12 @@ export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({
         setToken,
         isAuthenticated,
         setIsAuthenticated,
+        placeholder,
+        setPlaceholder,
+        postButtonText,
+        setPostButtonText,
+        accessCodeRequired,
+        setAccessCodeRequired,
       }}
     >
       {children}

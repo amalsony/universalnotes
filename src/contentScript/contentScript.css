@@ -1,11 +1,15 @@
+* {
+  margin: 0;
+}
+
 .universal_notes_popup_container {
   all: initial; /* Reset all inherited and default styles */
-  display: block; /* Re-establish block display */
+  display: block !important; /* Re-establish block display */
   font-family: Arial, sans-serif !important;
   position: fixed !important;
   top: 40px !important;
   right: 40px !important;
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: rgba(255, 255, 255, 1) !important;
   backdrop-filter: blur(6px) !important;
   color: #1f2937 !important;
   border: 1px solid #d1d5db !important;
@@ -18,17 +22,21 @@
     rgba(0, 0, 0, 0.05) !important;
   /* fade in animation */
   /* Initial state: hidden and moved to the right */
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.24s ease, transform 0.5s ease !important;
+  animation: popupFadeIn ease 0.4s !important;
   /* box shadow */
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
 }
 
-.universal_notes_popup_container.visible {
-  /* Final state: visible and positioned normally */
-  opacity: 1;
-  transform: translateX(0%);
+@keyframes popupFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .universal_notes_header {
@@ -52,10 +60,17 @@
 .universal_notes_title {
   all: initial;
   margin-left: 8px !important;
-  font-family: Arial, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
   color: #1f2937 !important;
   font-weight: bold !important;
   margin-right: 8px !important;
+}
+
+.universal_notes_close_button_container {
+  all: initial;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
 }
 
 .universal_notes_close_button {
@@ -73,7 +88,49 @@
 
 .universal_notes_close_button:hover {
   background-color: #e5e7eb !important;
-  border: 1px solid #d1d5db !important;
+  /* border: 1px solid #d1d5db !important; */
+}
+
+.universal_notes_close_button_hover_popup {
+  all: initial;
+  position: absolute !important;
+  display: block !important;
+  top: 42px !important;
+  right: 0 !important;
+  min-width: 240px !important;
+  text-align: center !important;
+  background: #ffffff !important;
+  font-size: 14px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  border: 1px solid rgb(252, 3, 90, 0.4) !important;
+  font-weight: bold !important;
+  padding: 12px !important;
+  color: #111827;
+  border-radius: 12px !important;
+  backdrop-filter: blur(6px) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease-in-out !important;
+  animation: fadeIn ease 0.24s !important;
+}
+
+.universal_notes_close_button_hover_popup p {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.universal_notes_close_button:focus {
+  outline: none !important;
+  border: 1px solid #097ed2 !important;
 }
 
 .universal_notes_content {
@@ -115,4 +172,17 @@
   color: #6b7280 !important;
   margin-top: 0 !important; /* Remove top margin */
   margin-bottom: 0 !important;
+}
+
+.universal_notes_access_code_warning_text {
+  /* margin: 0 1.5rem; */
+  /* margin-top: 0.5rem; */
+  font-size: 16px !important;
+  color: #111827 !important;
+  /* font-weight: 400; */
+  font-weight: 400 !important;
+  white-space: pre-wrap !important;
+  /* overflow */
+  overflow: wrap !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }

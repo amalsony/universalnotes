@@ -1,6 +1,17 @@
 .main-authenticated-container {
   width: 100%;
   background: #fff;
+  /* make the element fade-in when it's first displayed */
+  animation: fadeIn ease 0.24s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .main-authenticated-container-footer {

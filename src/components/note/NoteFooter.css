@@ -1,0 +1,105 @@
+.note-footer-container {
+  display: flex !important;
+  flex-direction: column !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  align-items: space-between !important;
+  justify-content: center !important;
+  padding: 8px 16px !important;
+  border-top: 1px solid #f2f2f2 !important;
+  overflow: hidden !important;
+}
+
+.note-footer-container-main {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.note-footer-container-right {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.note-footer-title {
+  font-size: 16px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  margin: 0 !important;
+  color: rgba(31, 41, 55, 0.9) !important;
+}
+
+.note-footer-button-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.note-footer-button {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-left: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* padding: 8px !important; */
+  height: 32px !important;
+  width: 32px !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  border: 1px solid #e3e3e3 !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.note-footer-button:hover {
+  background-color: #f2f2f2 !important;
+}
+
+.note-footer-button.note-liked-button {
+  border: 1px solid #fc035a !important;
+  background-color: rgba(252, 3, 90, 0.1) !important;
+}
+
+.note-footer-button.note-liked-button:hover {
+  background-color: rgba(252, 3, 90, 0.14) !important;
+}
+
+.note-footer-button.note-disliked-button {
+  border: 1px solid #4285f4 !important;
+  background-color: rgba(66, 133, 244, 0.1) !important;
+}
+
+.note_footer_button.note_disliked_button:hover {
+  background-color: rgba(66, 133, 244, 0.14) !important;
+}
+
+.note-footer-like-dislike-count {
+  font-size: 14px !important;
+  margin: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
+  color: #6b7280 !important;
+  margin-left: 6px !important;
+}
+
+.note-footer-container-links {
+  margin-top: 4px !important;
+  all: initial;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.note-footer-container-links-link {
+  color: #6b7280 !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 11px !important;
+  text-decoration: none !important;
+  margin-right: 10px !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.note-footer-container-links-link:hover {
+  color: #1f2937 !important;
+  cursor: pointer !important;
+}

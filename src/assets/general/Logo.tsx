@@ -1,6 +1,6 @@
 import React from "react";
 import "./Logo.css";
-import LogoSVG from "../../assets/svgs/Logo";
+import LogoSVG from "../svgs/Logo";
 
 export default function Logo({ ...props }) {
   return (

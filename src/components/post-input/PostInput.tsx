@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import "./PostInput.css";
 
@@ -7,53 +7,107 @@ import PropTypes from "prop-types";
 
 // axios
 import axios from "axios";
-import Logo from "../general/Logo";
+
+// Config
+import { config } from "../../config/config";
+
+// Components
+import Logo from "../../assets/general/Logo";
 import Link from "../../assets/svgs/Link";
-import { set } from "mongoose";
+import Warning from "../../assets/svgs/Warning";
 
-interface PostInputProps {
-  placeholder?: string;
-}
+// Context
+import { usePopup } from "../../context/popupContext";
 
-export default function PostInput({ placeholder }: PostInputProps) {
+import { getNiceURL } from "../../utilities/getNiceURL";
+
+export default function PostInput() {
   const [body, setBody] = useState<string>("");
   const [currentURL, setCurrentURL] = useState<string>("");
   const [niceURL, setNiceURL] = useState<string>("");
   const [characterCount, setCharacterCount] = useState<number>(0);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [buttonText, setButtonText] = useState<string>("Add Note");
+  const [showLoading, setShowLoading] = useState<boolean>(false);
+  const { placeholder, setPlaceholder } = usePopup();
+  const { postButtonText, setPostButtonText } = usePopup();
+  const [acceptsNotes, setAcceptsNotes] = useState<boolean>(true);
 
   const bodyInput = useRef<HTMLDivElement>(null);
+
+  const checkNoteStatus = (url: string) => {
+    console.log("url", url);
+    axios
+      .post(
+        `${
+          config.environment === "development"
+            ? config.developmentAPIURL
+            : config.productionAPIURL
+        }/notes/note-status`,
+        {
+          url,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setAcceptsNotes(res.data.status);
+        if (!res.data.status) {
+          console.log("res.data.placeholderText", res.data.placeholderText);
+          setPlaceholder(
+            res.data.placeholderText
+              ? res.data.placeholderText
+              : "To prevent abuse, notes can't be added to this page."
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setButtonText("Adding");
+    setTimeout(() => {
+      loading && setShowLoading(true);
+    }, 200);
+    setPostButtonText("Adding");
     const formData = new FormData();
     formData.append("body", body);
     formData.append("url", currentURL);
 
     await axios
-      .post("http://localhost:8000/notes/add-note", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .post(
+        `${
+          config.environment === "development"
+            ? config.developmentAPIURL
+            : config.productionAPIURL
+        }/notes/add-note`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         setLoading(false);
         // clear inputs
         setBody("");
         bodyInput.current.innerHTML = "";
 
-        setButtonText("Note Added");
+        setPostButtonText("Note Added");
         setTimeout(() => {
-          setButtonText("Add Note");
+          setPostButtonText("Add Note");
         }, 2000);
       })
       .catch((err) => {
         console.log(err);
-        setButtonText("Add Note");
+        setPostButtonText("Add Note");
         setLoading(false);
       });
   };
@@ -77,21 +131,22 @@ export default function PostInput({ placeholder }: PostInputProps) {
     document.execCommand("insertText", false, text); // Insert text where the cursor is
   };
 
-  const getNiceURL = (url: string) => {
-    const temp = url
-      .replace(/(https?:\/\/)?(www.)?/i, "")
-      .split("#")[0]
-      .split("?")[0]
-      .split(":")[0]
-      .toLowerCase();
-    const splicedURL = temp[temp.length - 1] === "/" ? temp.slice(0, -1) : temp;
-    return splicedURL;
-  };
+  // const getNiceURL = (url: string) => {
+  //   const temp = url
+  //     .replace(/(https?:\/\/)?(www.)?/i, "")
+  //     .split("#")[0]
+  //     .split("?")[0]
+  //     .split(":")[0]
+  //     .toLowerCase();
+  //   const splicedURL = temp[temp.length - 1] === "/" ? temp.slice(0, -1) : temp;
+  //   return splicedURL;
+  // };
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     let currentTab = tabs[0];
     if (currentTab) {
       setCurrentURL(currentTab.url);
+      checkNoteStatus(currentTab.url);
       setNiceURL(getNiceURL(currentTab.url));
     }
   });
@@ -99,11 +154,20 @@ export default function PostInput({ placeholder }: PostInputProps) {
   return (
     <div className="postInputContainer">
       <div className="header">
-        {/* <p className="header_text">You're adding context to</p> */}
-        <div className="header_text_url_container">
-          <div className="header_text_url_link_icon">
-            <Link width="22" height="22" color="#4285F4" />
-          </div>
+        <div
+          className={`header_text_url_container ${
+            !acceptsNotes ? "header_text_url_container_warning" : ""
+          }`}
+        >
+          {acceptsNotes ? (
+            <div className="header_text_url_link_icon">
+              <Link width="22" height="22" color="#4285F4" />
+            </div>
+          ) : (
+            <div className="header_text_url_warning_icon">
+              <Warning width="14" height="14" color="#EED202" />
+            </div>
+          )}
           <p className="header_text_url">
             {niceURL ? niceURL : "current page url"}
           </p>
@@ -114,7 +178,7 @@ export default function PostInput({ placeholder }: PostInputProps) {
           <div className="input_container">
             <div
               className="input"
-              contentEditable="true"
+              contentEditable={acceptsNotes ? "true" : "false"}
               role="textbox"
               spellCheck="true"
               placeholder={
@@ -152,13 +216,11 @@ export default function PostInput({ placeholder }: PostInputProps) {
               </div>
             </div>
             <button
-              disabled={loading}
+              disabled={loading || !acceptsNotes}
               type="submit"
               className={
-                loading
-                  ? "loading_button_container"
-                  : buttonText === "Note Added"
-                  ? "loading_button_container"
+                loading || !acceptsNotes || postButtonText === "Note Added"
+                  ? "disabled_button_container"
                   : "button_container"
               }
             >
@@ -166,10 +228,10 @@ export default function PostInput({ placeholder }: PostInputProps) {
                 <div className="button_text">
                   {loading ? (
                     <div className="loading">
-                      <div className="loading_text">{buttonText}</div>
+                      <div className="loading_text">{postButtonText}</div>
                     </div>
                   ) : (
-                    buttonText
+                    postButtonText
                   )}
                 </div>
               </div>

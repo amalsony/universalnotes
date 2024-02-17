@@ -1,4 +1,5 @@
 import React from "react";
+import "./svg.css";
 
 export default function Link({ width, height, color }) {
   return (
@@ -35,6 +36,7 @@ export default function Link({ width, height, color }) {
       viewBox="0 0 24 24"
       enableBackground="new 0 0 24 24"
       xmlSpace="preserve"
+      className="universalnotes-svg"
     >
       <g>
         <path

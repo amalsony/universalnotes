@@ -4,11 +4,18 @@ import "./contentScript.css";
 // Icons
 import CloseIcon from "../assets/svgs/CloseIcon";
 import Logo from "../assets/svgs/Logo";
+
+// Components
 import NoteBody from "../components/note/NoteBody";
+import NoteFooter from "../components/note/NoteFooter";
 
 export default function ContentScript() {
   const [popupVisible, setPopupVisible] = useState(false);
-  const [popup, setpopup] = useState(null);
+  const [popup, setPopup] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [accessCodeRequired, setAccessCodeRequired] = useState(false);
+  const [hasAccess, setHasAccess] = useState(true);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
   let lastUrl = null;
 
   // Function to handle URL changes
@@ -16,19 +23,55 @@ export default function ContentScript() {
     const url = window.location.href;
     if (url !== lastUrl) {
       lastUrl = url;
-      console.log("Page has navigated to:", url);
       chrome?.runtime?.sendMessage(
         { action: "checkURL", url: url },
         (response) => {
           // Use the response to determine whether to show the popup
           setPopupVisible(response.data.showPopup);
           if (response.data.showPopup) {
-            setpopup(response.data.message);
+            setPopup(response.data.message);
           }
         }
       );
     }
   };
+
+  // Function to close the popup
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+    chrome.runtime.sendMessage(
+      { action: "hideNote", noteId: popup?._id },
+      (response) => {
+        if (response.error) {
+          // Handle the error, e.g., display an error message
+          console.error("Error undisliking the note:", response.error);
+        }
+      }
+    );
+  };
+
+  const handleHoverPopup = () => {
+    if (!isAuthenticated) {
+      setShowLoginPopup(true);
+    }
+  };
+
+  const handleLeavePopup = () => {
+    setShowLoginPopup(false);
+  };
+
+  useEffect(() => {
+    chrome.runtime.sendMessage({ action: "isAuthenticated" }, (response) => {
+      setIsAuthenticated(response.data);
+      setHasAccess(response.hasAccess);
+    });
+  }, []);
+
+  useEffect(() => {
+    chrome.runtime.sendMessage({ action: "accessCodeRequired" }, (response) => {
+      setAccessCodeRequired(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     // Set up a MutationObserver to detect changes in the body element
@@ -54,11 +97,7 @@ export default function ContentScript() {
   return (
     <div>
       {popupVisible && (
-        <div
-          className={`universal_notes_popup_container ${
-            popupVisible ? "visible" : ""
-          }`}
-        >
+        <div className="universal_notes_popup_container">
           <div className="universal_notes_header">
             <div className="universal_notes_title_container">
               <Logo width={22} height={22} color={""} />
@@ -66,18 +105,48 @@ export default function ContentScript() {
                 UniversalNotes Contributors added context
               </h2>
             </div>
-            <button
-              className="universal_notes_close_button"
-              onClick={() => setPopupVisible(false)}
+            <div
+              className="universal_notes_close_button_container"
+              onMouseEnter={handleHoverPopup}
+              onMouseLeave={handleLeavePopup}
             >
-              <CloseIcon />
-            </button>
+              <button
+                className="universal_notes_close_button"
+                tabIndex={0}
+                onClick={handleClosePopup}
+              >
+                <CloseIcon />
+              </button>
+              {showLoginPopup && (
+                <div className={"universal_notes_close_button_hover_popup"}>
+                  <p>Hide permanently by logging in</p>
+                </div>
+              )}
+            </div>
           </div>
           <div className="universal_notes_content">
             <div className="universal_notes_text">
-              <NoteBody body={popup.body} />
+              {accessCodeRequired && !hasAccess ? (
+                <p className="universal_notes_access_code_warning_text">
+                  To view this note, enter an access code in the extension.{" "}
+                  {"\n\n"}
+                  Learn more at{" "}
+                  <a
+                    href="https://universalnotes.org/access-code-needed"
+                    target="_blank"
+                    className="universalnotes-link"
+                  >
+                    universalnotes.org/access-code-required
+                  </a>
+                </p>
+              ) : (
+                <NoteBody body={popup.body} />
+              )}
             </div>
           </div>
+          {accessCodeRequired && !hasAccess ? null : (
+            <NoteFooter note={popup} setNote={setPopup} />
+          )}
         </div>
       )}
     </div>

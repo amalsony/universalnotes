@@ -1,4 +1,5 @@
 import React from "react";
+import "./svg.css";
 
 export default function CloseIcon() {
   return (
@@ -8,6 +9,7 @@ export default function CloseIcon() {
       viewBox="0 0 800 800"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="universalnotes-svg"
     >
       <g clipPath="url(#clip0_1_9)">
         <path
