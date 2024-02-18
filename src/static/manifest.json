@@ -8,16 +8,7 @@
     "default_title": "UniversalNotes",
     "default_icon": "icon128.png"
   },
-  "permissions": [
-    "tabs",
-    "bookmarks",
-    "storage",
-    "cookies",
-    "identity",
-    "activeTab",
-    "scripting"
-  ],
-  "host_permissions": ["*://*/*"],
+  "permissions": ["tabs"],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",

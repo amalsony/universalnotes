@@ -89,8 +89,8 @@ export default function NoteFooter({ note, setNote }) {
             <a
               href={`${
                 config.environment === "development"
-                  ? config.developmentAPIURL
-                  : config.productionAPIURL
+                  ? config.developmentClientURL
+                  : config.productionClientURL
               }/note/${note?._id}`}
               target="_blank"
               className="note-footer-container-links-link"
@@ -101,8 +101,8 @@ export default function NoteFooter({ note, setNote }) {
               <a
                 href={`${
                   config.environment === "development"
-                    ? config.developmentAPIURL
-                    : config.productionAPIURL
+                    ? config.developmentClientURL
+                    : config.productionClientURL
                 }/note/${note?._id}?action=delete`}
                 target="_blank"
                 className="note-footer-container-links-link"
@@ -117,7 +117,7 @@ export default function NoteFooter({ note, setNote }) {
               target="_blank"
               className="note-footer-container-links-link"
             >
-              Provide feedback
+              Report bug / Provide feedback
             </a>
           </div>
         </div>
@@ -138,8 +138,8 @@ export default function NoteFooter({ note, setNote }) {
               <a
                 href={`${
                   config.environment === "development"
-                    ? config.developmentAPIURL
-                    : config.productionAPIURL
+                    ? config.developmentClientURL
+                    : config.productionClientURL
                 }/note/${note?._id}?action=like`}
                 target="_blank"
               >
@@ -166,8 +166,8 @@ export default function NoteFooter({ note, setNote }) {
               <a
                 href={`${
                   config.environment === "development"
-                    ? config.developmentAPIURL
-                    : config.productionAPIURL
+                    ? config.developmentClientURL
+                    : config.productionClientURL
                 }/note/${note?._id}?action=dislike`}
                 target="_blank"
               >

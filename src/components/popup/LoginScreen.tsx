@@ -11,7 +11,11 @@ import ContinueWithGoogle from "../auth/ContinueWithGoogle";
 export default function LoginScreen() {
   const handleLogin = () => {
     chrome.tabs.create({
-      url: `https://www.universalnotes.org/api/auth/google`,
+      url: `${
+        config.environment === "development"
+          ? config.developmentAPIURL
+          : config.productionAPIURL
+      }/auth/google`,
       selected: true,
       active: true,
     });

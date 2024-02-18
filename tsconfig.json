@@ -6,6 +6,11 @@
     "moduleResolution": "node",
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/utilities/getNiceURL.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/utilities/getNiceURL.js",
+    "src/config/config.js"
+  ],
   "exclude": ["node_modules"]
 }

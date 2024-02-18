@@ -53,8 +53,8 @@ export default function Profile() {
             onFocus={() => setShowTooltip(true)}
             href={`${
               config.environment === "development"
-                ? config.developmentAPIURL
-                : config.productionAPIURL
+                ? config.developmentClientURL
+                : config.productionClientURL
             }/profile`}
             target="_blank"
             tabIndex={0}
@@ -71,8 +71,8 @@ export default function Profile() {
               onFocus={() => setShowTooltip(true)}
               href={`${
                 config.environment === "development"
-                  ? config.developmentAPIURL
-                  : config.productionAPIURL
+                  ? config.developmentClientURL
+                  : config.productionClientURL
               }/profile/access-codes`}
               target="_blank"
               tabIndex={0}

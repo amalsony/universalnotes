@@ -69,7 +69,7 @@ export default function ContentScript() {
 
   useEffect(() => {
     chrome.runtime.sendMessage({ action: "accessCodeRequired" }, (response) => {
-      setAccessCodeRequired(response.data);
+      setAccessCodeRequired(response.data.data);
     });
   }, []);
 

@@ -15,7 +15,6 @@ import LoginScreen from "../components/popup/LoginScreen";
 import Main from "../components/popup/main/Main";
 import AccessCodeScreen from "../components/popup/AccessCodeScreen";
 import LoadingScreen from "../components/popup/LoadingScreen";
-import { set } from "mongoose";
 
 const Popup = () => {
   const { userInfo, setUserInfo, accessCodeRequired, setAccessCodeRequired } =
