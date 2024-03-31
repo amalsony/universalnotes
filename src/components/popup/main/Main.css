@@ -2,10 +2,10 @@
   width: 100%;
   background: #fff;
   /* make the element fade-in when it's first displayed */
-  animation: fadeIn ease 0.24s;
+  animation: mainFadeIn ease 0.24s;
 }
 
-@keyframes fadeIn {
+@keyframes mainFadeIn {
   0% {
     opacity: 0;
   }
