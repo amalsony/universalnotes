@@ -3,7 +3,7 @@
 }
 
 .universal_notes_popup_container {
-  all: initial; /* Reset all inherited and default styles */
+  all: initial !important; /* Reset all inherited and default styles */
   display: block !important; /* Re-establish block display */
   font-family: Arial, sans-serif !important;
   position: fixed !important;
@@ -28,6 +28,11 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
 }
 
+.universal_notes_popup_minimized {
+  width: 90px !important;
+  border-radius: 42px !important;
+}
+
 @keyframes popupFadeIn {
   0% {
     opacity: 0;
@@ -43,7 +48,7 @@
 }
 
 .universal_notes_header {
-  all: initial;
+  all: initial !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
@@ -51,6 +56,16 @@
   padding: 8px 16px !important;
   /* border-bottom: 1px solid #e3e3e3 !important; */
   border-radius: 8px 8px 0 0 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.universal_notes_header_minimized {
+  border-radius: 42px !important;
+}
+
+.universal_notes_header_minimized:hover {
+  cursor: pointer !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 .universal_notes_title_container {
@@ -69,27 +84,28 @@
   margin-right: 8px !important;
 }
 
-.universal_notes_close_button_container {
-  all: initial;
+.universal_notes_window_button_container {
+  all: initial !important;
   display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
   position: relative !important;
 }
 
-.universal_notes_close_button {
+.universal_notes_window_button {
   all: initial;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   background-color: transparent !important;
-  padding: 0.4rem !important;
+  padding: 6.4px !important;
   border-radius: 50% !important;
   cursor: pointer !important;
   transition: all 0.2s ease-in-out !important;
   border: 1px solid transparent !important;
 }
 
-.universal_notes_close_button:hover {
+.universal_notes_window_button:hover {
   background-color: #e5e7eb !important;
   /* border: 1px solid #d1d5db !important; */
 }
@@ -107,6 +123,7 @@
   font-family: Arial, Helvetica, sans-serif !important;
   border: 1px solid rgb(252, 3, 90, 0.4) !important;
   font-weight: bold !important;
+  margin: 0 !important;
   padding: 12px !important;
   color: #111827;
   border-radius: 12px !important;
@@ -118,6 +135,7 @@
 
 .universal_notes_close_button_hover_popup p {
   font-family: Arial, Helvetica, sans-serif !important;
+  margin: 0 !important;
 }
 
 @keyframes fadeIn {
@@ -188,4 +206,21 @@
   /* overflow */
   overflow: wrap !important;
   font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Rate Note */
+.universal_notes_rate_popup_container {
+  /* positioned absolute taking up the entire screen with a white translucent blurred background */
+  all: initial !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(6px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 999999 !important;
 }

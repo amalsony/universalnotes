@@ -3,6 +3,7 @@ import "./contentScript.css";
 
 // Icons
 import CloseIcon from "../assets/svgs/CloseIcon";
+import MinimizeIcon from "../assets/svgs/MinimizeIcon";
 import Logo from "../assets/svgs/Logo";
 
 // Components
@@ -11,6 +12,8 @@ import NoteFooter from "../components/note/NoteFooter";
 
 export default function ContentScript() {
   const [popupVisible, setPopupVisible] = useState(false);
+  const [showRateNote, setShowRateNote] = useState(false);
+  const [minimized, setMinimized] = useState(false);
   const [popup, setPopup] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [accessCodeRequired, setAccessCodeRequired] = useState(false);
@@ -48,6 +51,11 @@ export default function ContentScript() {
         }
       }
     );
+  };
+
+  // Function to minimize the popup
+  const handleMinimizePopup = () => {
+    setMinimized(true);
   };
 
   const handleHoverPopup = () => {
@@ -97,23 +105,46 @@ export default function ContentScript() {
   return (
     <div>
       {popupVisible && (
-        <div className="universal_notes_popup_container">
-          <div className="universal_notes_header">
+        <div
+          className={`universal_notes_popup_container ${
+            minimized ? "universal_notes_popup_minimized" : null
+          }`}
+        >
+          <div
+            className={`universal_notes_header ${
+              minimized ? "universal_notes_header_minimized" : ""
+            }`}
+            onClick={() => minimized && setMinimized(false)}
+          >
             <div className="universal_notes_title_container">
-              <Logo width={22} height={22} color={""} />
-              <h2 className="universal_notes_title">
-                UniversalNotes Contributors added context
-              </h2>
+              <Logo
+                width={22}
+                height={22}
+                color={""}
+                style={minimized ? { cursor: "pointer" } : {}}
+              />
+              {!minimized && (
+                <h2 className="universal_notes_title">
+                  UniversalNotes Contributors added context
+                </h2>
+              )}
             </div>
-            <div
-              className="universal_notes_close_button_container"
-              onMouseEnter={handleHoverPopup}
-              onMouseLeave={handleLeavePopup}
-            >
+            <div className="universal_notes_window_button_container">
+              {!minimized && (
+                <button
+                  className="universal_notes_window_button"
+                  tabIndex={0}
+                  onClick={handleMinimizePopup}
+                >
+                  <MinimizeIcon />
+                </button>
+              )}
               <button
-                className="universal_notes_close_button"
+                className="universal_notes_window_button"
                 tabIndex={0}
                 onClick={handleClosePopup}
+                onMouseEnter={handleHoverPopup}
+                onMouseLeave={handleLeavePopup}
               >
                 <CloseIcon />
               </button>
@@ -124,29 +155,59 @@ export default function ContentScript() {
               )}
             </div>
           </div>
-          <div className="universal_notes_content">
-            <div className="universal_notes_text">
-              {accessCodeRequired && !hasAccess ? (
-                <p className="universal_notes_access_code_warning_text">
-                  To view this note, enter an access code in the extension.{" "}
-                  {"\n\n"}
-                  Learn more at{" "}
-                  <a
-                    href="https://universalnotes.org/access-code-needed"
-                    target="_blank"
-                    className="universalnotes-link"
-                  >
-                    universalnotes.org/access-code-required
-                  </a>
-                </p>
-              ) : (
-                <NoteBody body={popup.body} />
-              )}
+          {!minimized && (
+            <div className="universal_notes_content">
+              <div className="universal_notes_text">
+                {accessCodeRequired && !hasAccess ? (
+                  <p className="universal_notes_access_code_warning_text">
+                    To view this note, enter an access code in the extension.{" "}
+                    {"\n\n"}
+                    Learn more at{" "}
+                    <a
+                      href="https://universalnotes.org/access-code-needed"
+                      target="_blank"
+                      className="universalnotes-link"
+                    >
+                      universalnotes.org/access-code-required
+                    </a>
+                  </p>
+                ) : (
+                  <NoteBody body={popup.body} />
+                )}
+              </div>
+            </div>
+          )}
+          {(accessCodeRequired && !hasAccess) || minimized ? null : (
+            <NoteFooter
+              note={popup}
+              setNote={setPopup}
+              setShowRateNote={setShowRateNote}
+            />
+          )}
+        </div>
+      )}
+      {showRateNote && (
+        <div
+          className="universal_notes_rate_popup_container"
+          onClick={() => setShowRateNote(false)} // This triggers on clicks outside the popup content
+        >
+          <div
+            className="universal_notes_rate_popup"
+            onClick={(e) => e.stopPropagation()} // This stops propagation of clicks within the popup
+          >
+            <div className="universal_notes_rate_popup_content">
+              <h2>Rate this note</h2>
+              <p>Is this note helpful?</p>
+              <div className="universal_notes_rate_popup_buttons">
+                <button className="universal_notes_rate_popup_button">
+                  Yes
+                </button>
+                <button className="universal_notes_rate_popup_button">
+                  No
+                </button>
+              </div>
             </div>
           </div>
-          {accessCodeRequired && !hasAccess ? null : (
-            <NoteFooter note={popup} setNote={setPopup} />
-          )}
         </div>
       )}
     </div>
