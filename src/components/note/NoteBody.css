@@ -4,10 +4,10 @@
   font-size: 16px !important;
   /* font-weight: 400; */
   font-weight: 400 !important;
-  white-space: pre-wrap !important;
+  white-space: pre-wrap;
   /* overflow */
-  overflow: wrap !important;
-  font-family: Arial, Helvetica, sans-serif !important;
+  overflow: wrap;
+  overflow-wrap: break-word;
 }
 
 .tag_link {

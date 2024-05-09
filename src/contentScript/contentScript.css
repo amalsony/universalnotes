@@ -65,7 +65,7 @@
 
 .universal_notes_header_minimized:hover {
   cursor: pointer !important;
-  background-color: rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(0, 0, 0, 0.042) !important;
 }
 
 .universal_notes_title_container {
