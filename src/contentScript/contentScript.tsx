@@ -9,6 +9,7 @@ import Logo from "../assets/svgs/Logo";
 // Components
 import NoteBody from "../components/note/NoteBody";
 import NoteFooter from "../components/note/NoteFooter";
+import RatePopup from "../components/rate/RatePopup";
 
 export default function ContentScript() {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -187,28 +188,11 @@ export default function ContentScript() {
         </div>
       )}
       {showRateNote && (
-        <div
-          className="universal_notes_rate_popup_container"
-          onClick={() => setShowRateNote(false)} // This triggers on clicks outside the popup content
-        >
-          <div
-            className="universal_notes_rate_popup"
-            onClick={(e) => e.stopPropagation()} // This stops propagation of clicks within the popup
-          >
-            <div className="universal_notes_rate_popup_content">
-              <h2>Rate this note</h2>
-              <p>Is this note helpful?</p>
-              <div className="universal_notes_rate_popup_buttons">
-                <button className="universal_notes_rate_popup_button">
-                  Yes
-                </button>
-                <button className="universal_notes_rate_popup_button">
-                  No
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <RatePopup
+          note={popup}
+          setNote={setPopup}
+          setShowRateNote={setShowRateNote}
+        />
       )}
     </div>
   );

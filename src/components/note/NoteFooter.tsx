@@ -127,14 +127,14 @@ export default function NoteFooter({ note, setNote, setShowRateNote }) {
             {...{ note, isAuthenticated, like, unlike, dislike, undislike }}
           /> */}
           <div className="note-footer-rate-button-container">
-            {isAuthenticated && (
-              <button
-                className={`note-footer-rate-button`}
-                onClick={() => setShowRateNote(true)}
-              >
-                Rate it
-              </button>
-            )}
+            {/* {isAuthenticated && ( */}
+            <button
+              className={`note-footer-rate-button`}
+              onClick={() => setShowRateNote(true)}
+            >
+              Rate it
+            </button>
+            {/* )} */}
           </div>
         </div>
       </div>

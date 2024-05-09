@@ -27,6 +27,12 @@ export default function LoginScreen() {
         <Logo width={22} height={22} color={"#000"} />
       </div>
       <ContinueWithGoogle onClick={handleLogin} />
+      <div className="login-screen-information">
+        <p>
+          You don't need an account if you only want to view notes, but you do
+          need one to like or dislike notes.
+        </p>
+      </div>
     </div>
   );
 }

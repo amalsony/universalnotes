@@ -56,7 +56,7 @@
   padding: 8px 16px !important;
   /* border-bottom: 1px solid #e3e3e3 !important; */
   border-radius: 8px 8px 0 0 !important;
-  transition: all 0.2s ease-in-out !important;
+  transition: background-color 0.2s ease-in-out !important;
 }
 
 .universal_notes_header_minimized {
@@ -206,21 +206,4 @@
   /* overflow */
   overflow: wrap !important;
   font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* Rate Note */
-.universal_notes_rate_popup_container {
-  /* positioned absolute taking up the entire screen with a white translucent blurred background */
-  all: initial !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(6px) !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  z-index: 999999 !important;
 }

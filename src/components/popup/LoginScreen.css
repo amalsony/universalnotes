@@ -13,3 +13,10 @@
 .login-screen-logo-container {
   margin-bottom: 1.5rem;
 }
+
+.login-screen-information {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #444;
+  margin: 1.5rem 1rem 0 1rem;
+}
