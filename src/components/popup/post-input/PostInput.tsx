@@ -9,17 +9,17 @@ import PropTypes from "prop-types";
 import axios from "axios";
 
 // Config
-import { config } from "../../config/config";
+import { config } from "../../../config/config";
 
 // Components
-import Logo from "../../assets/general/Logo";
-import Link from "../../assets/svgs/Link";
-import Warning from "../../assets/svgs/Warning";
+import Logo from "../../../assets/general/Logo";
+import Link from "../../../assets/svgs/Link";
+import Warning from "../../../assets/svgs/Warning";
 
 // Context
-import { usePopup } from "../../context/popupContext";
+import { usePopup } from "../../../context/popupContext";
 
-import { getNiceURL } from "../../utilities/getNiceURL";
+import { getNiceURL } from "../../../utilities/getNiceURL";
 
 export default function PostInput() {
   const [body, setBody] = useState<string>("");

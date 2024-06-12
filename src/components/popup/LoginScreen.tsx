@@ -6,7 +6,7 @@ import { config } from "../../config/config";
 
 // Components
 import Logo from "../../assets/general/Logo";
-import ContinueWithGoogle from "../auth/ContinueWithGoogle";
+import ContinueWithGoogle from "./auth/ContinueWithGoogle";
 
 export default function LoginScreen() {
   const handleLogin = () => {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./contentScript.css";
+import root from "react-shadow";
+import styles from "./contentScript.shadow.css";
 
 // Icons
 import CloseIcon from "../assets/svgs/CloseIcon";
@@ -9,7 +10,7 @@ import Logo from "../assets/svgs/Logo";
 // Components
 import NoteBody from "../components/note/NoteBody";
 import NoteFooter from "../components/note/NoteFooter";
-import RatePopup from "../components/rate/RatePopup";
+import RatePopup from "../components/note/rate/RatePopup";
 
 export default function ContentScript() {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -104,7 +105,7 @@ export default function ContentScript() {
   }, []);
 
   return (
-    <div>
+    <root.div>
       {popupVisible && (
         <div
           className={`universal_notes_popup_container ${
@@ -189,11 +190,12 @@ export default function ContentScript() {
       )}
       {showRateNote && (
         <RatePopup
-          note={popup}
-          setNote={setPopup}
+          // note={popup}
+          // setNote={setPopup}
           setShowRateNote={setShowRateNote}
         />
       )}
-    </div>
+      <style type="text/css">{styles}</style>
+    </root.div>
   );
 }

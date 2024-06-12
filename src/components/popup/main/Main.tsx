@@ -8,7 +8,7 @@ import { usePopup } from "../../../context/popupContext";
 import axios from "axios";
 
 // Components
-import PostInput from "../../post-input/PostInput";
+import PostInput from "../post-input/PostInput";
 import MainHeader from "./MainHeader";
 
 export default function Main() {

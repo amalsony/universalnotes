@@ -1,5 +1,6 @@
 import React from "react";
-import "./NoteBody.css";
+import root from "react-shadow";
+import styles from "./NoteBody.shadow.css";
 
 export default function NoteBody({ body }: { body: any }) {
   if (!body) return null;
@@ -82,7 +83,7 @@ export default function NoteBody({ body }: { body: any }) {
   );
 
   return (
-    <div className="user_post_body_container">
+    <root.div className="user_post_body_container">
       <div className="user_post_body">
         <span>
           {body.map((line: any, index: any) => (
@@ -93,6 +94,7 @@ export default function NoteBody({ body }: { body: any }) {
           ))}
         </span>
       </div>
-    </div>
+      <style type="text/css">{styles}</style>
+    </root.div>
   );
 }

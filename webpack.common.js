@@ -20,7 +20,11 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
+        test: /\.shadow.css$/,
+        use: ["to-string-loader", "css-loader"],
+      },
+      {
+        test: /^(?!.*\.shadow\.css$).*\.css$/i,
         use: [
           "style-loader",
           {

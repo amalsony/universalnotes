@@ -22,6 +22,28 @@ chrome?.runtime?.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+// Get proposed notes for the url from /rate-notes/get-proposed-notes
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  const query = new URLSearchParams({ url: request.url }).toString();
+  if (request.action === "getProposedNotes") {
+    fetch(
+      `${
+        config.environment === "development"
+          ? config.developmentAPIURL
+          : config.productionAPIURL
+      }/rate-notes/get-proposed-notes?${query}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        sendResponse({ data: data });
+      })
+      .catch((error) => {
+        sendResponse({ error: error });
+      });
+    return true;
+  }
+});
+
 // Post actions
 
 // Like

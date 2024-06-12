@@ -1,0 +1,140 @@
+.universal_notes_rate_popup_main_note {
+  padding: 16px 18px !important;
+  background-color: #fff !important;
+}
+
+.universal_notes_rate_popup_main_text {
+  font-size: 16px !important;
+  color: #000 !important;
+  font-family: Arial, sans-serif !important;
+  margin-top: 0 !important; /* Remove top margin */
+  margin-bottom: 0 !important;
+}
+
+.universal_notes_rate_popup_note_footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: #f8f8f8 !important;
+  border-radius: 12px !important;
+  margin-top: 18px !important;
+  padding: 16px 22px !important;
+  overflow: hidden !important;
+}
+
+.universal_notes_rate_popup_note_footer_title {
+  font-size: 16px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  margin: 0 !important;
+  color: rgba(31, 41, 55, 0.9) !important;
+}
+
+.universal_notes_rate_popup_note_footer_buttons {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.universal_notes_rate_popup_note_footer_button {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-left: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none;
+  justify-content: center !important;
+  font-family: Arial, sans-serif !important;
+  padding: 8px 18px !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  border: 1px solid #e3e3e3 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  color: #222 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.universal_notes_rate_popup_note_footer_button:hover {
+  background-color: #f2f2f2 !important;
+}
+
+.universal_notes_rate_popup_note_footer_button:focus {
+  outline: none !important;
+}
+
+.universal_notes_rate_popup_note_footer_button.universal_notes_rate_popup_note_footer_liked_button {
+  border: 1px solid #4285f4 !important;
+  background-color: rgba(66, 133, 244, 0.1) !important;
+  color: #4285f4 !important;
+}
+
+.universal_notes_rate_popup_note_footer_button.universal_notes_rate_popup_note_footer_liked_button:hover {
+  background-color: rgba(66, 133, 244, 0.14) !important;
+}
+
+.universal_notes_rate_popup_note_footer_button.universal_notes_rate_popup_note_footer_disliked_button {
+  border: 1px solid #fc035a !important;
+  background-color: rgba(252, 3, 90, 0.1) !important;
+  color: #fc035a !important;
+}
+
+.universal_notes_rate_popup_note_footer_button.universal_notes_rate_popup_note_footer_disliked_button:hover {
+  background-color: rgba(252, 3, 90, 0.14) !important;
+}
+
+.note-footer-button-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.note-footer-button {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-left: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* padding: 8px !important; */
+  height: 32px !important;
+  width: 32px !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  border: 1px solid #e3e3e3 !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.note-footer-button:hover {
+  background-color: #f2f2f2 !important;
+}
+
+.note-footer-button.note-liked-button {
+  border: 1px solid #fc035a !important;
+  background-color: rgba(252, 3, 90, 0.1) !important;
+}
+
+.note-footer-button.note-liked-button:hover {
+  background-color: rgba(252, 3, 90, 0.14) !important;
+}
+
+.note-footer-button.note-disliked-button {
+  border: 1px solid #4285f4 !important;
+  background-color: rgba(66, 133, 244, 0.1) !important;
+}
+
+.note_footer_button.note_disliked_button:hover {
+  background-color: rgba(66, 133, 244, 0.14) !important;
+}
+
+.note-footer-like-dislike-count {
+  font-size: 14px !important;
+  margin: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
+  color: #6b7280 !important;
+  margin-left: 6px !important;
+}
