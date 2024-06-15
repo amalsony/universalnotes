@@ -14,6 +14,7 @@ import { config } from "../../../config/config";
 // Components
 import RateNote from "./RateNote";
 import LoadingRing from "./LoadingRing";
+import RateFooter from "./RateFooter";
 
 export default function RatePopup({ setShowRateNote }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -115,27 +116,7 @@ export default function RatePopup({ setShowRateNote }) {
                     </div>
                   </div>
                 )}
-                {/* Write a note section */}
-                <div className="universal_notes_rate_popup_footer">
-                  <p className="universal_notes_rate_popup_footer_title">
-                    See anything you'd like to improve?
-                  </p>
-                  <button
-                    className="universal_notes_rate_popup_footer_button"
-                    onClick={() => {
-                      window.open(
-                        `${
-                          config.environment === "development"
-                            ? config.developmentClientURL
-                            : config.productionClientURL
-                        }`,
-                        "_blank"
-                      );
-                    }}
-                  >
-                    Write a note
-                  </button>
-                </div>
+                <RateFooter />
               </div>
             </div>
           )

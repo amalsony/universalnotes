@@ -1,0 +1,79 @@
+.universal_notes_rate_popup_footer {
+  border-top: 1px solid #f2f2f2 !important;
+  background: #f8f8f8 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 29px !important;
+  border-radius: 0 0 12px 12px !important;
+}
+
+.universal_notes_rate_popup_footer_title {
+  font-size: 19px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
+  margin: 0 !important;
+  color: #333 !important;
+}
+
+.universal_notes_rate_popup_footer_instructions {
+  display: flex;
+  flex-direction: column;
+  width: 86%;
+}
+
+.universal_notes_rate_popup_footer_bullet {
+  padding-top: 12px !important;
+  font-size: 16px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  margin: 0 !important;
+  color: #000 !important;
+}
+
+.universal_notes_rate_popup_footer_bullet::marker {
+  color: #333;
+}
+
+.universal_notes_rate_popup_footer_bullet_text {
+  font-size: 16px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 400 !important;
+  color: #000 !important;
+  margin: 0 !important;
+  line-height: 1.9 !important;
+}
+
+.universal_notes_italic {
+  font-style: italic !important;
+  color: #444 !important;
+}
+
+/* Add Note type button */
+.universal_notes_rate_popup_footer_button {
+  display: inline !important;
+  margin-left: 9px !important;
+  box-sizing: border-box;
+  padding: 4px 14px;
+  background: #0a96fb;
+  /* PINK */
+  /* background: #ec058e; */
+  /* DARK BLUE */
+  /* background: #0d21a1; */
+  /* background: rgb(10, 121, 136); */
+  /* background: #000; */
+  /* color: #fff; */
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15), 0px 2px 5px rgba(0, 0, 0, 0.05),
+    0px 8px 40px rgba(0, 0, 0, 0.04);
+  color: #000;
+  /* border: 2px solid rgb(89, 91, 99); */
+  border-radius: 2rem;
+  /* border-radius: 1rem; */
+  /* background-color: #252525; */
+  color: #fff;
+  font-size: 12.2px;
+  font-weight: 600;
+  /* border: 1px solid white; */
+  border: 1px solid #0a96fb;
+  transition: all 0.2s ease-in-out;
+}
