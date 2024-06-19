@@ -10,15 +10,14 @@ import axios from "axios";
 // Components
 import PostInput from "../post-input/PostInput";
 import MainHeader from "./MainHeader";
-import NoteTypePage from "./NoteTypePage";
 
 export default function Main() {
-  const [popupStep, setPopupStep] = useState(1);
+  const [popupStep, setPopupStep] = useState(2);
 
   return (
     <div className="main-authenticated-container">
       <MainHeader />
-      {popupStep === 1 ? <PostInput /> : <NoteTypePage />}
+      <PostInput />
     </div>
   );
 }

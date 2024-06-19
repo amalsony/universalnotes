@@ -15,11 +15,14 @@ import { config } from "../../../config/config";
 import Logo from "../../../assets/general/Logo";
 import Link from "../../../assets/svgs/Link";
 import Warning from "../../../assets/svgs/Warning";
+import NoteTypePage from "../main/NoteTypePage";
 
 // Context
 import { usePopup } from "../../../context/popupContext";
 
 import { getNiceURL } from "../../../utilities/getNiceURL";
+import BackArrow from "../../../assets/svgs/BackArrow";
+import NextButton from "./NextButton";
 
 export default function PostInput() {
   const [body, setBody] = useState<string>("");
@@ -100,8 +103,10 @@ export default function PostInput() {
         setBody("");
         bodyInput.current.innerHTML = "";
 
+        console.log("Note Added");
         setPostButtonText("Note Added");
         setTimeout(() => {
+          console.log("Resetting button text");
           setPostButtonText("Add Note");
         }, 2000);
       })
@@ -151,91 +156,101 @@ export default function PostInput() {
     }
   });
 
+  const [addNoteStep, setAddNoteStep] = useState<number>(1);
+
   return (
     <div className="postInputContainer">
-      <div className="header">
-        <div
-          className={`header_text_url_container ${
-            !acceptsNotes ? "header_text_url_container_warning" : ""
-          }`}
-        >
-          {acceptsNotes ? (
-            <div className="header_text_url_link_icon">
-              <Link width="22" height="22" color="#4285F4" />
-            </div>
-          ) : (
-            <div className="header_text_url_warning_icon">
-              <Warning width="14" height="14" color="#EED202" />
-            </div>
-          )}
-          <p className="header_text_url">
-            {niceURL ? niceURL : "current page url"}
-          </p>
-        </div>
-      </div>
-      <div className="postInputContainer">
-        <form onSubmit={handleSubmit} className="form">
-          <div className="input_container">
-            <div
-              className="input"
-              contentEditable={acceptsNotes ? "true" : "false"}
-              role="textbox"
-              spellCheck="true"
-              placeholder={
-                placeholder
-                  ? placeholder
-                  : "Does this page need more context? Add it here."
-              }
-              onInput={(e) =>
-                bodyChangeHandler(e as React.ChangeEvent<HTMLDivElement>)
-              }
-              onPaste={handlePaste}
-              ref={bodyInput}
-            ></div>
-          </div>
-          {error && <div className="error_container">{error}</div>}
-          <div className="buttons_container">
-            {loading && (
-              <div className="lds_ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+      {addNoteStep === 1 && (
+        <div className="header">
+          <div
+            className={`header_text_url_container ${
+              !acceptsNotes ? "header_text_url_container_warning" : ""
+            }`}
+          >
+            {acceptsNotes ? (
+              <div className="header_text_url_link_icon">
+                <Link width="22" height="22" color="#4285F4" />
+              </div>
+            ) : (
+              <div className="header_text_url_warning_icon">
+                <Warning width="14" height="14" color="#EED202" />
               </div>
             )}
-
-            <div className="character_count_container">
+            <p className="header_text_url">
+              {niceURL ? niceURL : "current page url"}
+            </p>
+          </div>
+        </div>
+      )}
+      <div className="postInputContainer">
+        <form onSubmit={handleSubmit} className="form">
+          {addNoteStep === 2 ? (
+            <NoteTypePage />
+          ) : (
+            <div className="input_container">
               <div
-                className={
-                  characterCount > 1000
-                    ? "character_count_error"
-                    : "character_count"
+                className="input"
+                contentEditable={acceptsNotes ? "true" : "false"}
+                role="textbox"
+                spellCheck="true"
+                placeholder={
+                  placeholder
+                    ? placeholder
+                    : "Does this page need more context? Add it here."
                 }
-              >
-                {characterCount}/1000
-              </div>
+                onInput={(e) =>
+                  bodyChangeHandler(e as React.ChangeEvent<HTMLDivElement>)
+                }
+                onPaste={handlePaste}
+                ref={bodyInput}
+              ></div>
             </div>
-            <button
-              disabled={loading || !acceptsNotes}
-              type="submit"
-              className={
-                loading || !acceptsNotes || postButtonText === "Note Added"
-                  ? "disabled_button_container"
-                  : "button_container"
-              }
-            >
-              <div className="button">
-                <div className="button_text">
-                  {loading ? (
-                    <div className="loading">
-                      <div className="loading_text">{postButtonText}</div>
-                    </div>
-                  ) : (
-                    postButtonText
-                  )}
+          )}
+          {error && <div className="error_container">{error}</div>}
+          <div className="post_input_footer">
+            <div className="post_input_footer_right">
+              {addNoteStep === 2 && (
+                <div className="post_input_back_button">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setAddNoteStep(1);
+                    }}
+                    className="back_button"
+                  >
+                    <BackArrow width="24" height="24" />
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="post_input_footer_left">
+              {loading && (
+                <div className="lds_ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              )}
+
+              <div className="character_count_container">
+                <div
+                  className={
+                    characterCount > 1000
+                      ? "character_count_error"
+                      : "character_count"
+                  }
+                >
+                  {characterCount}/1000
                 </div>
               </div>
-            </button>
+              <NextButton
+                loading={loading}
+                addNoteStep={addNoteStep}
+                setAddNoteStep={setAddNoteStep}
+                acceptsNotes={acceptsNotes}
+              />
+            </div>
           </div>
         </form>
       </div>

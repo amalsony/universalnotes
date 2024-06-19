@@ -1,5 +1,9 @@
 .postInputContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   max-width: 100%;
+  height: 100%;
   /* border-bottom: 1px solid #f3f5f6; */
 }
 
@@ -7,10 +11,12 @@
   width: 100%;
   height: 100%;
 }
+
 .form {
   width: 100%;
   height: 100%;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -263,24 +269,45 @@
   font-weight: 700;
 }
 
-.buttons_container {
+.post_input_footer {
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: space-between;
 }
 
-.buttons_container_with_media {
+.post_input_footer_left {
   display: flex;
   align-items: center;
 }
 
-.input_media_container {
+.post_input_footer_right {
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
-.input_media_container > * {
-  padding: 1rem;
+.post_input_back_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back_button {
+  box-sizing: border-box;
+  padding: 7px;
+  margin: 0 1rem;
+  border-radius: 1.4rem;
+  background: #fff;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15), 0px 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(66, 133, 244, 0.4);
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.back_button:hover {
+  background: #f3f5f6;
 }
 
 /* [contenteditable] {
@@ -292,89 +319,6 @@
   content: attr(data-placeholder);
   color: #888;
   /* font-style: italic; */
-}
-
-/* Media classes */
-
-.profile_pic_preview_container {
-  display: flex;
-  justify-content: flex-start;
-  padding: 1rem;
-  padding-bottom: 0;
-}
-
-.profile_pic_preview {
-  position: relative;
-  max-width: 100%;
-}
-
-.profile_pic_preview_img {
-  max-width: 100%;
-  height: 22rem;
-  object-fit: cover;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  border-radius: 1rem;
-  min-height: 340px;
-  max-height: 560px;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 1rem;
-  border: 1px solid #efefef;
-  min-height: 340px;
-  max-height: 560px;
-  object-fit: cover;
-}
-
-.profile_pic_preview_img_overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background: rgba(0, 0, 0, 0.5); */
-  display: flex;
-  justify-content: right;
-  align-items: flex-start;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 700;
-  border-radius: 1rem;
-  border: 1px solid #efefef;
-}
-
-.remove_image {
-  color: #000;
-  font-size: 0.9rem;
-}
-
-.remove_button {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.7rem;
-  border-radius: 4rem;
-  margin: 1rem;
-  border: 1px solid rgba(239, 239, 239, 0.2);
-  transition: all 0.2s ease-in-out;
-}
-
-.remove_button:hover {
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(239, 239, 239, 0.7);
-  cursor: pointer;
-}
-
-.profile_pic_input {
-  display: none;
-}
-
-.change_image_button {
-  padding: 0.7rem;
-  border-radius: 30px;
-  color: #000;
-  font-weight: 700;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
 }
 
 .error_container {

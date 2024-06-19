@@ -1,5 +1,8 @@
 .main-authenticated-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  min-height: 242px;
   background: #fff;
   /* make the element fade-in when it's first displayed */
   animation: mainFadeIn ease 0.24s;
