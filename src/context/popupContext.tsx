@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 interface PopupContextType {
   userInfo: any;
@@ -9,8 +9,14 @@ interface PopupContextType {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | null>>;
   placeholder: string;
   setPlaceholder: React.Dispatch<React.SetStateAction<string>>;
+  addNoteStep: number;
+  setAddNoteStep: React.Dispatch<React.SetStateAction<number>>;
+  isAgainstContext: boolean;
+  setIsAgainstContext: React.Dispatch<React.SetStateAction<boolean>>;
   postButtonText: string;
   setPostButtonText: React.Dispatch<React.SetStateAction<string>>;
+  inputContent: string;
+  setInputContent: React.Dispatch<React.SetStateAction<string>>;
   accessCodeRequired: boolean;
   setAccessCodeRequired: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -25,8 +31,14 @@ const defaultPopupContextValue: PopupContextType = {
   setIsAuthenticated: () => {},
   placeholder: "",
   setPlaceholder: () => {},
-  postButtonText: "Add note",
+  addNoteStep: 1,
+  setAddNoteStep: () => {},
+  isAgainstContext: false,
+  setIsAgainstContext: () => {},
+  postButtonText: "Next",
   setPostButtonText: () => {},
+  inputContent: "",
+  setInputContent: () => {},
   accessCodeRequired: false,
   setAccessCodeRequired: () => {},
 };
@@ -41,8 +53,12 @@ export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
+  const [addNoteStep, setAddNoteStep] = useState<number>(1);
+  const [isAgainstContext, setIsAgainstContext] = useState<boolean>(false);
+
   const [placeholder, setPlaceholder] = useState<string>("");
-  const [postButtonText, setPostButtonText] = useState<string>("Add Note");
+  const [postButtonText, setPostButtonText] = useState<string>("Next");
+  const [inputContent, setInputContent] = useState<string>("");
 
   const [accessCodeRequired, setAccessCodeRequired] = useState<boolean>(false);
 
@@ -57,8 +73,14 @@ export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsAuthenticated,
         placeholder,
         setPlaceholder,
+        isAgainstContext,
+        setIsAgainstContext,
+        addNoteStep,
+        setAddNoteStep,
         postButtonText,
         setPostButtonText,
+        inputContent,
+        setInputContent,
         accessCodeRequired,
         setAccessCodeRequired,
       }}

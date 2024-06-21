@@ -1,4 +1,6 @@
 import React from "react";
+import root from "react-shadow";
+import styles from "./NoteFooter.shadow.css";
 
 // Config
 import { config } from "../../config/config";
@@ -16,7 +18,7 @@ export default function NoteFooterButtons({
   undislike,
 }) {
   return (
-    <>
+    <root.fragment>
       <div className="note-footer-button-container">
         {isAuthenticated ? (
           <button
@@ -73,6 +75,6 @@ export default function NoteFooterButtons({
         )}
         <p className="note-footer-like-dislike-count">{note?.dislike_count}</p>
       </div>
-    </>
+    </root.fragment>
   );
 }

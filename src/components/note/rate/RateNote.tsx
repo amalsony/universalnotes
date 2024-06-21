@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from "react";
-import "./RatePopup.css";
-
-// Icons
-import CloseIcon from "../../assets/svgs/CloseIcon";
+import React, { useState } from "react";
+import root from "react-shadow";
+import styles from "./RateNote.shadow.css";
 
 // Config
-import { config } from "../../config/config";
+import { config } from "../../../config/config";
 
-export default function RatePopup({ note, setNote, setShowRateNote }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+// Components
+import NoteBody from "../NoteBody";
+import MenuButton from "./MenuButton";
 
-  useEffect(() => {
-    chrome.runtime.sendMessage({ action: "isAuthenticated" }, (response) => {
-      setIsAuthenticated(response.data);
-    });
-  }, []);
+export default function RateNote({ noteData, isAuthenticated, deleteNote }) {
+  const [note, setNote] = useState(noteData);
 
   function like() {
     chrome.runtime.sendMessage(
@@ -77,47 +73,32 @@ export default function RatePopup({ note, setNote, setShowRateNote }) {
   }
 
   return (
-    <div
-      className="universal_notes_rate_popup_container"
-      onClick={() => setShowRateNote(false)} // This triggers on clicks outside the popup content
-    >
-      <div
-        className="universal_notes_rate_popup"
-        onClick={(e) => e.stopPropagation()} // This stops propagation of clicks within the popup
-      >
-        {/* header */}
-        <div className="universal_notes_rate_popup_header">
-          <h2 className="universal_notes_rate_popup_title">Rate this note</h2>
-          <div className="universal_notes_window_button_container">
-            <button
-              className="universal_notes_window_button"
-              tabIndex={0}
-              onClick={() => setShowRateNote(false)}
-            >
-              <CloseIcon />
-            </button>
+    <root.div>
+      <div className="universal_notes_rate_popup_main_note">
+        <div className="universal_notes_rate_popup_main_note_body">
+          <div className="universal_notes_rate_popup_main_text">
+            <NoteBody body={note?.body} />
+          </div>
+          <div className="universal_notes_rate_popup_main_note_body_right">
+            <MenuButton
+              noteId={note?._id}
+              isPostedBySelf={note?.isPostedBySelf}
+              deleteNote={deleteNote}
+            />
           </div>
         </div>
         {/* footer */}
-        <div className="universal_notes_rate_popup_footer">
-          <p className="universal_notes_rate_popup_footer_title">
+        <div className="universal_notes_rate_popup_note_footer">
+          <p className="universal_notes_rate_popup_note_footer_title">
             Is this note helpful?
           </p>
-          {/* <div className="universal_notes_rate_popup_footer_buttons">
-            <button className="universal_notes_rate_popup_footer_button">
-              Yes
-            </button>
-            <button className="universal_notes_rate_popup_footer_button">
-              No
-            </button>
-          </div> */}
-          <div className="universal_notes_rate_popup_footer_buttons">
+          <div className="universal_notes_rate_popup_note_footer_buttons">
             <div className="note-footer-button-container">
               {isAuthenticated ? (
                 <button
-                  className={`universal_notes_rate_popup_footer_button ${
+                  className={`universal_notes_rate_popup_note_footer_button ${
                     note?.isLiked
-                      ? "universal_notes_rate_popup_footer_liked_button"
+                      ? "universal_notes_rate_popup_note_footer_liked_button"
                       : ""
                   }`}
                   onClick={() => {
@@ -135,7 +116,7 @@ export default function RatePopup({ note, setNote, setShowRateNote }) {
                   }/note/${note?._id}?action=like`}
                   target="_blank"
                 >
-                  <button className="universal_notes_rate_popup_footer_button">
+                  <button className="universal_notes_rate_popup_note_footer_button">
                     Yes
                   </button>
                 </a>
@@ -147,9 +128,9 @@ export default function RatePopup({ note, setNote, setShowRateNote }) {
             <div className="note-footer-button-container">
               {isAuthenticated ? (
                 <button
-                  className={`universal_notes_rate_popup_footer_button ${
+                  className={`universal_notes_rate_popup_note_footer_button ${
                     note?.isDisliked
-                      ? "universal_notes_rate_popup_footer_disliked_button"
+                      ? "universal_notes_rate_popup_note_footer_disliked_button"
                       : ""
                   }`}
                   onClick={() => {
@@ -167,7 +148,7 @@ export default function RatePopup({ note, setNote, setShowRateNote }) {
                   }/note/${note?._id}?action=dislike`}
                   target="_blank"
                 >
-                  <button className="universal_notes_rate_popup_footer_button">
+                  <button className="universal_notes_rate_popup_note_footer_button">
                     No
                   </button>
                 </a>
@@ -179,6 +160,7 @@ export default function RatePopup({ note, setNote, setShowRateNote }) {
           </div>
         </div>
       </div>
-    </div>
+      <style type="text/css">{styles}</style>
+    </root.div>
   );
 }

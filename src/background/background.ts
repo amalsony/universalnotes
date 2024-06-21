@@ -22,6 +22,28 @@ chrome?.runtime?.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+// Get proposed notes for the url from /rate-notes/get-proposed-notes
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  const query = new URLSearchParams({ url: request.url }).toString();
+  if (request.action === "getProposedNotes") {
+    fetch(
+      `${
+        config.environment === "development"
+          ? config.developmentAPIURL
+          : config.productionAPIURL
+      }/rate-notes/get-proposed-notes?${query}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        sendResponse({ data: data });
+      })
+      .catch((error) => {
+        sendResponse({ error: error });
+      });
+    return true;
+  }
+});
+
 // Post actions
 
 // Like
@@ -153,6 +175,36 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           ? config.developmentAPIURL
           : config.productionAPIURL
       }/notes/hide-note`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ noteId: request.noteId }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Send a response with the note data
+        sendResponse({ data: data });
+      })
+      .catch((error) => {
+        // Send a response with the error
+        sendResponse({ error: error.message });
+      });
+    return true;
+  }
+});
+
+// Delete
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "deleteNote") {
+    fetch(
+      `${
+        config.environment === "development"
+          ? config.developmentAPIURL
+          : config.productionAPIURL
+      }/notes/delete-note`,
       {
         method: "POST",
         headers: {

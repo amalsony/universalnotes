@@ -10,7 +10,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/utilities/getNiceURL.js",
-    "src/config/config.js"
+    "src/config/config.js",
+    "declaration.d.ts"
   ],
   "exclude": ["node_modules"]
 }
