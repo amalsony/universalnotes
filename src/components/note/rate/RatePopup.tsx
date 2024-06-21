@@ -42,6 +42,9 @@ export default function RatePopup({ setShowRateNote }) {
           setNotes(response.data.data?.notesWithContext);
           setNotesAgainstContext(response.data.data?.notesAgainstContext);
           setLoading(false);
+        } else if (response.error) {
+          console.error("Error fetching proposed notes:", response.error);
+          setLoading(false);
         }
       }
     );
@@ -54,6 +57,21 @@ export default function RatePopup({ setShowRateNote }) {
         setShowLoadingRing(true);
       }
     }, 1200);
+  }
+
+  // Delete Note
+  function deleteNote(noteId) {
+    chrome.runtime.sendMessage({ action: "deleteNote", noteId }, (response) => {
+      if (response.error) {
+        console.error("Error deleting the note:", response.error);
+      } else if (response.data) {
+        // Filter the deleted note from either notes or notesAgainstContext
+        setNotes((notes) => notes.filter((note) => note._id !== noteId));
+        setNotesAgainstContext((notesAgainstContext) =>
+          notesAgainstContext.filter((note) => note._id !== noteId)
+        );
+      }
+    });
   }
 
   return (
@@ -95,8 +113,10 @@ export default function RatePopup({ setShowRateNote }) {
                   <div className="universal_notes_rate_popup_main_notes">
                     {notes.map((note) => (
                       <RateNote
+                        key={note._id}
                         noteData={note}
                         isAuthenticated={isAuthenticated}
+                        deleteNote={deleteNote}
                       />
                     ))}
                   </div>
@@ -109,8 +129,10 @@ export default function RatePopup({ setShowRateNote }) {
                     <div className="universal_notes_rate_popup_main_notes">
                       {notesAgainstContext.map((note) => (
                         <RateNote
+                          key={note._id}
                           noteData={note}
                           isAuthenticated={isAuthenticated}
+                          deleteNote={deleteNote}
                         />
                       ))}
                     </div>

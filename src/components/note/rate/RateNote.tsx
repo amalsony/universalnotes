@@ -7,8 +7,9 @@ import { config } from "../../../config/config";
 
 // Components
 import NoteBody from "../NoteBody";
+import MenuButton from "./MenuButton";
 
-export default function RateNote({ noteData, isAuthenticated }) {
+export default function RateNote({ noteData, isAuthenticated, deleteNote }) {
   const [note, setNote] = useState(noteData);
 
   function like() {
@@ -74,8 +75,17 @@ export default function RateNote({ noteData, isAuthenticated }) {
   return (
     <root.div>
       <div className="universal_notes_rate_popup_main_note">
-        <div className="universal_notes_rate_popup_main_text">
-          <NoteBody body={note?.body} />
+        <div className="universal_notes_rate_popup_main_note_body">
+          <div className="universal_notes_rate_popup_main_text">
+            <NoteBody body={note?.body} />
+          </div>
+          <div className="universal_notes_rate_popup_main_note_body_right">
+            <MenuButton
+              noteId={note?._id}
+              isPostedBySelf={note?.isPostedBySelf}
+              deleteNote={deleteNote}
+            />
+          </div>
         </div>
         {/* footer */}
         <div className="universal_notes_rate_popup_note_footer">

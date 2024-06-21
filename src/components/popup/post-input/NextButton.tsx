@@ -6,23 +6,32 @@ import { usePopup } from "../../../context/popupContext";
 
 export default function NextButton({
   loading,
-  addNoteStep,
-  setAddNoteStep,
   acceptsNotes,
+  body,
 }: {
   loading: boolean;
-  addNoteStep: number;
-  setAddNoteStep: React.Dispatch<React.SetStateAction<number>>;
   acceptsNotes: boolean;
+  body: string;
 }) {
   const { postButtonText } = usePopup();
+  const { addNoteStep, setAddNoteStep, setPostButtonText } = usePopup();
 
   return (
     <button
-      disabled={loading || !acceptsNotes || postButtonText === "Note Added"}
+      disabled={
+        loading ||
+        !acceptsNotes ||
+        postButtonText === "Note Added" ||
+        postButtonText === "Error" ||
+        body.length === 0
+      }
       type="submit"
       className={
-        loading || !acceptsNotes || postButtonText === "Note Added"
+        loading ||
+        !acceptsNotes ||
+        postButtonText === "Note Added" ||
+        postButtonText === "Error" ||
+        body.length === 0
           ? "disabled_button_container"
           : "button_container"
       }
@@ -30,6 +39,7 @@ export default function NextButton({
         if (addNoteStep === 1) {
           e.preventDefault();
           setAddNoteStep(2);
+          setPostButtonText("Add Note");
         }
       }}
     >
@@ -40,7 +50,7 @@ export default function NextButton({
               <div className="loading_text">{postButtonText}</div>
             </div>
           ) : (
-            `${addNoteStep === 1 ? "Next" : postButtonText}`
+            postButtonText
           )}
         </div>
       </div>

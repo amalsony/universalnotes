@@ -4,7 +4,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  align-self: center;
+  width: 80%;
   height: 100%;
 }
 
@@ -16,9 +17,10 @@
 }
 
 .note_type_page_title {
-  margin-top: 1rem;
-  font-size: 18px;
-  font-weight: 500;
+  margin-top: 2rem;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
   color: #111;
 }
 
@@ -46,11 +48,16 @@
 }
 
 .note_type_page_input_text {
-  font-size: 14px;
-  font-weight: normal;
-  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  color: #444;
+}
+
+.note_type_page_input:checked {
+  background-color: #0a96fb;
 }
 
 .note_type_page_input_text:hover {
-  text-decoration: underline;
+  color: #000;
+  cursor: pointer;
 }

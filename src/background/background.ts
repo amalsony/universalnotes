@@ -196,6 +196,36 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+// Delete
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "deleteNote") {
+    fetch(
+      `${
+        config.environment === "development"
+          ? config.developmentAPIURL
+          : config.productionAPIURL
+      }/notes/delete-note`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ noteId: request.noteId }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Send a response with the note data
+        sendResponse({ data: data });
+      })
+      .catch((error) => {
+        // Send a response with the error
+        sendResponse({ error: error.message });
+      });
+    return true;
+  }
+});
+
 // isAuthenticated
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "isAuthenticated") {

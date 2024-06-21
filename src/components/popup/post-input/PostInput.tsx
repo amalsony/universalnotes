@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 import "./PostInput.css";
 
@@ -34,12 +34,13 @@ export default function PostInput() {
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const { placeholder, setPlaceholder } = usePopup();
   const { postButtonText, setPostButtonText } = usePopup();
+  const { isAgainstContext, setIsAgainstContext } = usePopup();
+  const { addNoteStep, setAddNoteStep } = usePopup();
   const [acceptsNotes, setAcceptsNotes] = useState<boolean>(true);
 
   const bodyInput = useRef<HTMLDivElement>(null);
 
   const checkNoteStatus = (url: string) => {
-    console.log("url", url);
     axios
       .post(
         `${
@@ -82,6 +83,7 @@ export default function PostInput() {
     const formData = new FormData();
     formData.append("body", body);
     formData.append("url", currentURL);
+    formData.append("isAgainstContext", isAgainstContext.toString());
 
     await axios
       .post(
@@ -99,20 +101,28 @@ export default function PostInput() {
       )
       .then((res) => {
         setLoading(false);
+
+        setPostButtonText("Note Added");
+
         // clear inputs
         setBody("");
-        bodyInput.current.innerHTML = "";
+        if (bodyInput.current) {
+          bodyInput.current.innerHTML = "";
+        }
+        setCharacterCount(0);
+        setAddNoteStep(1);
 
-        console.log("Note Added");
-        setPostButtonText("Note Added");
+        setTimeout(() => {
+          setPostButtonText("Next");
+        }, 2000);
+      })
+      .catch((err) => {
+        console.log("Post Input Error", err);
+        setPostButtonText("Error");
         setTimeout(() => {
           console.log("Resetting button text");
           setPostButtonText("Add Note");
         }, 2000);
-      })
-      .catch((err) => {
-        console.log(err);
-        setPostButtonText("Add Note");
         setLoading(false);
       });
   };
@@ -136,6 +146,18 @@ export default function PostInput() {
     document.execCommand("insertText", false, text); // Insert text where the cursor is
   };
 
+  const refillInputWithText = () => {
+    setTimeout(() => {
+      if (bodyInput.current) {
+        // Replace newline characters with <br> tags
+        const formattedBody = body.replace(/\n/g, "<br>");
+        bodyInput.current.innerHTML = formattedBody;
+      } else {
+        console.error("bodyInput.current is null");
+      }
+    }, 0);
+  };
+
   // const getNiceURL = (url: string) => {
   //   const temp = url
   //     .replace(/(https?:\/\/)?(www.)?/i, "")
@@ -155,8 +177,6 @@ export default function PostInput() {
       setNiceURL(getNiceURL(currentTab.url));
     }
   });
-
-  const [addNoteStep, setAddNoteStep] = useState<number>(1);
 
   return (
     <div className="postInputContainer">
@@ -215,6 +235,8 @@ export default function PostInput() {
                     onClick={(e) => {
                       e.preventDefault();
                       setAddNoteStep(1);
+                      setPostButtonText("Next");
+                      refillInputWithText();
                     }}
                     className="back_button"
                   >
@@ -246,9 +268,8 @@ export default function PostInput() {
               </div>
               <NextButton
                 loading={loading}
-                addNoteStep={addNoteStep}
-                setAddNoteStep={setAddNoteStep}
                 acceptsNotes={acceptsNotes}
+                body={body}
               />
             </div>
           </div>

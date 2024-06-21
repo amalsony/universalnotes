@@ -3,12 +3,41 @@
   background-color: #fff !important;
 }
 
+.universal_notes_rate_popup_main_note_body {
+  display: flex !important;
+}
+
 .universal_notes_rate_popup_main_text {
+  width: 100% !important;
   font-size: 16px !important;
   color: #000 !important;
   font-family: Arial, sans-serif !important;
   margin-top: 0 !important; /* Remove top margin */
   margin-bottom: 0 !important;
+}
+
+.universal_notes_window_button_container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  position: relative !important;
+}
+
+.universal_notes_window_button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: transparent !important;
+  padding: 6.4px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+  border: 1px solid transparent !important;
+}
+
+.universal_notes_window_button:hover {
+  background-color: #e5e7eb !important;
+  /* border: 1px solid #d1d5db !important; */
 }
 
 .universal_notes_rate_popup_note_footer {
@@ -57,10 +86,6 @@
 
 .universal_notes_rate_popup_note_footer_button:hover {
   background-color: #f2f2f2 !important;
-}
-
-.universal_notes_rate_popup_note_footer_button:focus {
-  outline: none !important;
 }
 
 .universal_notes_rate_popup_note_footer_button.universal_notes_rate_popup_note_footer_liked_button {
