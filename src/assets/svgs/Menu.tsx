@@ -12,8 +12,8 @@ export default function MenuIcon({
   return (
     <svg
       fill={color ? color : "#000000"}
-      height={height ? height : "18px"}
-      width={width ? width : "18px"}
+      height={height ? height : "14px"}
+      width={width ? width : "14px"}
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"

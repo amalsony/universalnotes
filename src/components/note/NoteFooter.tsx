@@ -88,41 +88,41 @@ export default function NoteFooter({ note, setNote, setShowRateNote }) {
         <div className="note-footer-container-main">
           <div className="note-footer-container-left">
             <p className="note-footer-title">Is this note helpful?</p>
-            <div className="note-footer-container-links">
-              <a
-                href={`${
-                  config.environment === "development"
-                    ? config.developmentClientURL
-                    : config.productionClientURL
-                }/note/${note?._id}`}
-                target="_blank"
-                className="note-footer-container-links-link"
-              >
-                More Details
-              </a>
-              {note?.isPostedBySelf && (
+            {/* <div className="note-footer-container-links">
                 <a
                   href={`${
                     config.environment === "development"
                       ? config.developmentClientURL
                       : config.productionClientURL
-                  }/note/${note?._id}?action=delete`}
+                  }/note/${note?._id}`}
                   target="_blank"
                   className="note-footer-container-links-link"
                 >
-                  Delete note
+                  More Details
                 </a>
-              )}
-              <a
-                href={
-                  "mailto:universalnotesorg@gmail.com?subject=UniversalNotes%20Feedback&body=Thank%20you%20for%20providing%20feedback.%0D%0A%0D%0AMessage:"
-                }
-                target="_blank"
-                className="note-footer-container-links-link"
-              >
-                Report bug / Provide feedback
-              </a>
-            </div>
+                {note?.isPostedBySelf && (
+                  <a
+                    href={`${
+                      config.environment === "development"
+                        ? config.developmentClientURL
+                        : config.productionClientURL
+                    }/note/${note?._id}?action=delete`}
+                    target="_blank"
+                    className="note-footer-container-links-link"
+                  >
+                    Delete note
+                  </a>
+                )}
+                <a
+                  href={
+                    "mailto:universalnotesorg@gmail.com?subject=UniversalNotes%20Feedback&body=Thank%20you%20for%20providing%20feedback.%0D%0A%0D%0AMessage:"
+                  }
+                  target="_blank"
+                  className="note-footer-container-links-link"
+                >
+                  Report bug / Provide feedback
+                </a>
+              </div> */}
           </div>
           <div className="note-footer-container-right">
             {/* <NoteFooterButtons
