@@ -1,0 +1,93 @@
+.universal_notes_window_button_container {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  position: relative !important;
+}
+
+.universal_notes_window_button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: transparent !important;
+  padding: 6.4px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+  border: 1px solid transparent !important;
+}
+
+.universal_notes_window_button:hover {
+  background-color: #e5e7eb !important;
+  /* border: 1px solid #d1d5db !important; */
+}
+
+.button_active_background {
+  background-color: #e5e7eb !important;
+}
+
+.universal_notes_window_button_tooltip {
+  position: absolute !important;
+  display: flex !important;
+  flex-direction: column !important;
+  font-size: 14.4px !important;
+  top: 35.2px !important;
+  right: 0 !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  border: 1px solid #f2f2f2 !important;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important;
+  z-index: 2 !important;
+}
+
+/*  The first item has border radius on its top corners */
+.universal_notes_window_button_tooltip_item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+/*  The last item has border radius on its bottom corners */
+.universal_notes_window_button_tooltip_item:last-child {
+  border-radius: 0 0 8px 8px !important;
+  border-bottom: none !important;
+}
+
+.universal_notes_window_button_tooltip_item {
+  padding: 9px 14px !important;
+  margin: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid #f2f2f2 !important;
+  width: 100% !important;
+  font-size: 14.4px !important;
+  font-family: Arial, sans-serif !important;
+  color: #000 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: all ease-in-out 0.2s !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  text-decoration: none !important; /* Remove underline from links */
+  text-align: left !important; /* Align text to the left */
+  box-sizing: border-box !important; /* Include padding in width calculation */
+}
+
+.universal_notes_window_button_tooltip_item:hover {
+  background: #f5f5f5 !important;
+}
+
+.universal_notes_window_button_tooltip_item_red {
+  margin: 0 !important;
+  color: #ff0000 !important;
+}
+
+.universal_notes_window_button_tooltip_item_text {
+  margin: 0 !important;
+}
+
+.universal_notes_window_button_tooltip_item_text,
+.universal_notes_window_button_tooltip_item_red {
+  display: block !important; /* Make the text take full width */
+  width: 100% !important; /* Ensure full width */
+}

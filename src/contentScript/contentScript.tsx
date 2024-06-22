@@ -11,6 +11,7 @@ import Logo from "../assets/svgs/Logo";
 import NoteBody from "../components/note/NoteBody";
 import NoteFooter from "../components/note/NoteFooter";
 import RatePopup from "../components/note/rate/RatePopup";
+import OptionsButton from "../components/note/OptionsButton";
 
 export default function ContentScript() {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -132,29 +133,20 @@ export default function ContentScript() {
               )}
             </div>
             <div className="universal_notes_window_button_container">
-              {!minimized && (
-                <button
-                  className="universal_notes_window_button"
-                  tabIndex={0}
-                  onClick={handleMinimizePopup}
-                >
-                  <MinimizeIcon />
-                </button>
-              )}
-              <button
-                className="universal_notes_window_button"
-                tabIndex={0}
-                onClick={handleClosePopup}
-                onMouseEnter={handleHoverPopup}
-                onMouseLeave={handleLeavePopup}
-              >
-                <CloseIcon />
-              </button>
-              {showLoginPopup && (
+              {!minimized && <></>}
+              <OptionsButton
+                note={popup}
+                handleClosePopup={handleClosePopup}
+                handleHoverPopup={handleHoverPopup}
+                handleLeavePopup={handleLeavePopup}
+                minimized={minimized}
+                setMinimized={setMinimized}
+              />
+              {/* {showLoginPopup && (
                 <div className={"universal_notes_close_button_hover_popup"}>
                   <p>Hide permanently by logging in</p>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
           {!minimized && (
